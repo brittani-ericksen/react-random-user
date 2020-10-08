@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import RandomUser from "./components/RandomUser";
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = { 
+    userData: []
+  };
+
+  loadData = async () => {
+    const response = await fetch("https://randomuser.me/api/?results=8");
+    const data = await response.json();
+    return data;
+  };
+
+  handleClick = async () => {
+    const userData = await this.loadData();
+
+    this.setState({
+      userData: userData.results,
+    });
+  }
+
+  async componentDidMount() {
+    const userData = await this.loadData();
+
+    this.setState({
+      userData: userData.results,
+    });
+  }
+
+  render() {
+      const { userData } = this.state;
+      return (
+        <div className="App">
+          <header className="App-header">
+            <h1>Random User</h1>
+          </header>
+          <div>
+            <button onClick={this.handleClick}>Load More Users</button>
+            {this.state.userData.length ? (
+              <RandomUser userData={userData} />
+            ) : (
+              <p>No User Data</p>
+              )}
+          </div>
+        </div>
+    );
+  }
 }
 
 export default App;

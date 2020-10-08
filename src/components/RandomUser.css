@@ -1,0 +1,11 @@
+.user-card {
+    background-color: black;
+    border: 2px solid black;
+    border-radius: 2px;
+    color: rgb(255, 134, 5);
+    display: inline-block;
+    padding-top: 5px;
+    margin: 10px;
+    height: 215px;
+    width: 150px;
+}
