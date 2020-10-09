@@ -3,7 +3,9 @@
 }
 
 .App-header {
-  background-color: #000000;
+  background-color: #300a5c;
+  border: 2px solid black;
+  border-radius: 5px;
   min-height: 100px;
   display: flex;
   flex-direction: column;
@@ -13,4 +15,7 @@
   color: white;
 }
 
+.cards {
+  margin-top: 10px;;
+}
 
